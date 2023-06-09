@@ -21,7 +21,7 @@ router.get("/:id", authenticate, isValidId, ctrl.getContactsById);
 router.post(
   "/",
   authenticate,
-  validateCreateBody(schemas.addShema),
+  validateCreateBody(schemas.addSchema),
   ctrl.createContact
 );
 
@@ -31,7 +31,7 @@ router.put(
   "/:id",
   authenticate,
   isValidId,
-  validateBody(schemas.changeShema),
+  validateBody(schemas.changeSchema),
   ctrl.changeContactById
 );
 

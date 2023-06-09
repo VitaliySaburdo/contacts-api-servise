@@ -10,10 +10,6 @@ const contactSchema = new Schema(
       type: String,
       required: true,
     },
-    email: {
-      type: String,
-      required: true,
-    },
     phone: {
       type: String,
       required: true,
@@ -35,16 +31,14 @@ contactSchema.post("save", handleMongooseError);
 
 const Contact = model("contact", contactSchema);
 
-// Joi shemas
-const addShema = Joi.object({
+// Joi schemas
+const addSchema = Joi.object({
   name: Joi.string().required(),
-  email: Joi.string().email().required(),
   phone: Joi.string().required(),
   favorite: Joi.boolean(),
 });
-const changeShema = Joi.object({
+const changeSchema = Joi.object({
   name: Joi.string(),
-  email: Joi.string().email(),
   phone: Joi.string(),
 });
 
@@ -53,8 +47,8 @@ const upDateFavoriteSchema = Joi.object({
 });
 
 const schemas = {
-  addShema,
-  changeShema,
+  addSchema: addSchema,
+  changeSchema: changeSchema,
   upDateFavoriteSchema,
 };
 
