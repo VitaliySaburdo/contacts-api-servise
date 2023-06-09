@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const app = require("./app");
 require("dotenv").config();
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3030;
 
 const { DB_HOST } = process.env;
 

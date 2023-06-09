@@ -3,7 +3,7 @@ const Joi = require("joi");
 
 const { handleMongooseError } = require("../helpers");
 
-// Mongoose shemas
+// Mongoose schemas
 const contactSchema = new Schema(
   {
     name: {
