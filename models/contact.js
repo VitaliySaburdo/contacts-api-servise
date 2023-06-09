@@ -10,7 +10,7 @@ const contactSchema = new Schema(
       type: String,
       required: true,
     },
-    phone: {
+    number: {
       type: String,
       required: true,
     },
@@ -34,12 +34,12 @@ const Contact = model("contact", contactSchema);
 // Joi schemas
 const addSchema = Joi.object({
   name: Joi.string().required(),
-  phone: Joi.string().required(),
+  number: Joi.string().required(),
   favorite: Joi.boolean(),
 });
 const changeSchema = Joi.object({
   name: Joi.string(),
-  phone: Joi.string(),
+  number: Joi.string(),
 });
 
 const upDateFavoriteSchema = Joi.object({
