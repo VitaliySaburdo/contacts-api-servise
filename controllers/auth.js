@@ -62,7 +62,7 @@ const login = async (req, res) => {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
   await User.findByIdAndUpdate(user._id, { token });
   res.json({
-    message: "Account is successfully created",
+    message: "You are successfully login",
     token: token,
     user: { name: user.name, email: user.email },
   });
@@ -78,7 +78,7 @@ const getCurrent = async (req, res) => {
 const logout = async (req, res) => {
   const { _id } = req.user;
   await User.findByIdAndUpdate(_id, { token: "" });
-  res.status(204).json();
+  res.status(204).json({ message: "The user is logged out" });
 };
 
 const updateAvatar = async (req, res) => {
