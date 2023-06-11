@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "version": "1.0.0",
-    "title": "Your pet API"
+    "title": "Your Contact API"
   },
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
@@ -94,7 +94,7 @@
     },
     "/users/logout": {
       "post": {
-        "tags": ["Auth"],
+        "tags": ["Users"],
         "summary": "User logout",
         "security": [
           {
@@ -132,7 +132,7 @@
     },
     "/users/current": {
       "get": {
-        "tags": ["Auth"],
+        "tags": ["Users"],
         "summary": "Get current user",
         "security": [
           {
