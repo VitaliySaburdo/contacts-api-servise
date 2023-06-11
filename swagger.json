@@ -319,29 +319,31 @@
       "RegistrationResponse": {
         "type": "object",
         "properties": {
-          "name": {
+          "message": {
             "type": "string"
-          },
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          },
-          "avatarURL": {
-            "type": "string"
-          },
-          "newUser": {
-            "type": "boolean"
           },
           "token": {
             "type": "string"
+          },
+          "user": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email"
+            }
           }
         },
         "example": {
-          "email": "user@example.com",
+          "message": "Account is successfully created",
           "token": "string",
-          "avatarURL": null,
-          "newUser": true
+          "user": {
+            "name": "User",
+            "email": "user@example.com"
+          }
         }
       },
       "LoginRequest": {
