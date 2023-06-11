@@ -264,6 +264,35 @@
           }
         }
       }
+    },
+        "/contacts/{id}": {
+      "patch": {
+        "tags": ["Contacts"],
+        "summary": "Delete pet by id",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Pet's id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet deleted successfully",
+            "content": {}
+          },
+          "404": {
+            "description": "Cannot find pet with this id",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
