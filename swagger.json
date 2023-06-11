@@ -299,8 +299,13 @@
     "schemas": {
       "RegistrationRequest": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": ["name","email", "password"],
         "properties": {
+            "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "User name"
+          },
           "email": {
             "type": "string",
             "description": "User's email",
