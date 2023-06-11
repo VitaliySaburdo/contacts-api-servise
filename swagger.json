@@ -302,7 +302,7 @@
           "name": {
             "type": "string",
             "description": "User's name",
-            "example": "User name"
+            "example": "User Name"
           },
           "email": {
             "type": "string",
@@ -312,13 +312,16 @@
           "password": {
             "type": "string",
             "description": "User's password",
-            "example": "12345678aZ"
+            "example": "12345678"
           }
         }
       },
       "RegistrationResponse": {
         "type": "object",
         "properties": {
+          "name": {
+            "type": "string"
+          },
           "email": {
             "type": "string",
             "description": "User's email",
@@ -330,35 +333,15 @@
           "newUser": {
             "type": "boolean"
           },
-          "accessToken": {
-            "type": "string"
-          },
-          "refreshToken": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "birthday": {
-            "type": "string",
-            "format": "date"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "city": {
+          "token": {
             "type": "string"
           }
         },
         "example": {
           "email": "user@example.com",
-          "accessToken": "string",
-          "refreshToken": "string",
+          "token": "string",
           "avatarURL": null,
-          "newUser": true,
-          "birthday": null,
-          "phone": "string",
-          "city": "string"
+          "newUser": true
         }
       },
       "LoginRequest": {
