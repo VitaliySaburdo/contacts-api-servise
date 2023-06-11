@@ -36,11 +36,11 @@ const register = async (req, res) => {
   await User.findByIdAndUpdate(newUser._id, { token });
 
   res.status(201).json({
+    message: "Account is successfully created",
     token: token,
     user: {
       name: newUser.name,
       email: newUser.email,
-      message: 'User created'
     },
   });
 };
