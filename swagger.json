@@ -384,7 +384,7 @@
           }
         },
         "example": {
-          "message": "Account is successfully created",
+          "message": "You are successfully login",
           "token": "string",
           "user": {
             "name": "User",
