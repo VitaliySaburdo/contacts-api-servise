@@ -363,48 +363,33 @@
         }
       },
       "LoginResponse": {
-        "type": "object",
+                "type": "object",
         "properties": {
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          },
-          "avatarURL": {
+          "message": {
             "type": "string"
           },
-          "accessToken": {
+          "token": {
             "type": "string"
           },
-          "refreshToken": {
-            "type": "string"
-          },
-          "newUser": {
-            "type": "boolean"
-          },
-          "name": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
+          "user": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email"
+            }
           }
         },
         "example": {
-          "email": "user@example.com",
-          "accessToken": "string",
-          "refreshToken": "string",
-          "avatarURL": null,
-          "newUser": false,
-          "birthday": null,
-          "phone": "+############",
-          "city": "string"
+          "message": "Account is successfully created",
+          "token": "string",
+          "user": {
+            "name": "User",
+            "email": "user@example.com"
+          }
         }
       },
       "LogoutResponse": {

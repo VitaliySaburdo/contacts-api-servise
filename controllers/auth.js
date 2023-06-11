@@ -62,8 +62,9 @@ const login = async (req, res) => {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
   await User.findByIdAndUpdate(user._id, { token });
   res.json({
+    message: "Account is successfully created",
     token: token,
-    user: { name: user.name, email: user.email, avatarURL: user.avatarURL },
+    user: { name: user.name, email: user.email },
   });
 };
 
