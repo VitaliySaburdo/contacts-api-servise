@@ -1,0 +1,547 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Your pet API"
+  },
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json"],
+  "servers": [{ "url": "https://contacts-api-servise.onrender.com" }],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Authorization endpoints"
+    },
+    {
+      "name": "Contacts",
+      "description": "Contacts endpoints"
+    }
+  ],
+  "paths": {
+    "/users/signup": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User registration",
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed! Bad request, invalid value",
+            "content": {}
+          },
+          "409": {
+            "description": "Failed! Conflict, the email still exist!",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User login",
+        "requestBody": {
+          "description": "Login's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Login is successfully completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed! Bad request, invalid value",
+            "content": {}
+          },
+          "401": {
+            "description": "Failed! Invalid email or password",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "access token",
+            "required": true,
+            "description": "The user access token for logout"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Logout is successfully completed'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/users/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current user",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "access token",
+            "required": true,
+            "description": "The user token for getting user params"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current user successfully found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "get": {
+        "tags": ["Contacts"],
+        "summary": "Get all contacts",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Page"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Limit"
+          }
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllPetsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Contacts"],
+        "summary": "Create contacts",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "Contacts's object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created pet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePetResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BAD_REQUEST"
+          }
+        }
+      }
+    },
+    "/contacts/{id}": {
+      "delete": {
+        "tags": ["Contacts"],
+        "summary": "Delete pet by id",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Pet's id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet deleted successfully",
+            "content": {}
+          },
+          "404": {
+            "description": "Cannot find pet with this id",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "12345678aZ"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "avatarURL": {
+            "type": "string"
+          },
+          "newUser": {
+            "type": "boolean"
+          },
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "user@example.com",
+          "accessToken": "string",
+          "refreshToken": "string",
+          "avatarURL": null,
+          "newUser": true,
+          "birthday": null,
+          "phone": "string",
+          "city": "string"
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "12345678aZ"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "avatarURL": {
+            "type": "string"
+          },
+          "accessToken": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "newUser": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "user@example.com",
+          "accessToken": "string",
+          "refreshToken": "string",
+          "avatarURL": null,
+          "newUser": false,
+          "birthday": null,
+          "phone": "+############",
+          "city": "string"
+        }
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User's id",
+            "example": "32143232436545474"
+          }
+        },
+        "example": 1
+      },
+      "CurrentResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email"
+          },
+          "avatarURL": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User's id",
+            "example": "32143232436545474"
+          },
+          "accessToken": {
+            "type": "string",
+            "description": "User's accessToken"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "User's refreshToken"
+          },
+          "name": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "userId": "1",
+          "email": "user@example.com",
+          "accessToken": "string",
+          "refreshToken": "string",
+          "avatarURL": null,
+          "date": null,
+          "name": "string",
+          "phone": "string",
+          "city": "string"
+        }
+      },
+      "GetAllContactsResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "breed": {
+                  "type": "string"
+                },
+                "avatarURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CreatePetRequest": {
+        "type": "object",
+        "required": ["name", "breed", "date", "file"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "date": {
+            "type": "string",
+            "required": true,
+            "format": "date"
+          },
+          "breed": {
+            "type": "string",
+            "required": true
+          },
+          "file": {
+            "type": "file",
+            "required": true
+          },
+          "comments": {
+            "type": "string"
+          }
+        }
+      },
+      "CreatePetResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "code": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
