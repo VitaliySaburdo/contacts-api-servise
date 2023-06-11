@@ -263,12 +263,10 @@
             "content": {}
           }
         }
-      }
-    },
-    "/contacts/{id}": {
+      },
       "patch": {
         "tags": ["Contacts"],
-        "summary": "Delete pet by id",
+        "summary": "Update pet by id",
         "security": [
           {
             "Bearer": []
@@ -284,7 +282,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Pet deleted successfully",
+            "description": "Pet updated successfully",
             "content": {}
           },
           "404": {
@@ -299,9 +297,9 @@
     "schemas": {
       "RegistrationRequest": {
         "type": "object",
-        "required": ["name","email", "password"],
+        "required": ["name", "email", "password"],
         "properties": {
-            "name": {
+          "name": {
             "type": "string",
             "description": "User's name",
             "example": "User name"
