@@ -9,7 +9,7 @@
   "servers": [{ "url": "https://contacts-api-servise.onrender.com" }],
   "tags": [
     {
-      "name": "Users",
+      "name": "User",
       "description": "Authorization endpoints"
     },
     {
@@ -20,8 +20,8 @@
   "paths": {
     "/users/signup": {
       "post": {
-        "tags": ["Users"],
-        "summary": "User registration",
+        "tags": ["User"],
+        "summary": "Create a new user",
         "requestBody": {
           "description": "Registration's object",
           "required": true,
@@ -57,7 +57,7 @@
     },
     "/users/login": {
       "post": {
-        "tags": ["Users"],
+        "tags": ["User"],
         "summary": "User login",
         "requestBody": {
           "description": "Login's object",
@@ -94,7 +94,7 @@
     },
     "/users/logout": {
       "post": {
-        "tags": ["Users"],
+        "tags": ["User"],
         "summary": "User logout",
         "security": [
           {
@@ -132,7 +132,7 @@
     },
     "/users/current": {
       "get": {
-        "tags": ["Users"],
+        "tags": ["User"],
         "summary": "Get current user",
         "security": [
           {
@@ -265,7 +265,7 @@
         }
       }
     },
-        "/contacts/{id}": {
+    "/contacts/{id}": {
       "patch": {
         "tags": ["Contacts"],
         "summary": "Delete pet by id",
