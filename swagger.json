@@ -399,7 +399,7 @@
         }
       },
       "GetAllContactsResponse": {
-        "type": "object",
+        "type": "array",
         "properties": {
           "_id": {
             "type": "string"
@@ -414,7 +414,7 @@
             "type": "boolean"
           },
           "owner": {
-            "type": "array",
+            "type": "object",
             "items": {
               "type": "object",
               "properties": {
