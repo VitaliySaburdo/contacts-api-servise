@@ -164,18 +164,6 @@
       "get": {
         "tags": ["Contacts"],
         "summary": "Get all contacts",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page",
-            "description": "Page"
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "description": "Limit"
-          }
-        ],
         "security": [
           {
             "Bearer": []
