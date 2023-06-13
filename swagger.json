@@ -401,6 +401,9 @@
       "GetAllContactsResponse": {
         "type": "array",
         "properties": {
+          "type": "object",
+          "properties":{
+                      "type": "array",
           "_id": {
             "type": "string"
           },
@@ -431,6 +434,7 @@
                 }
               }
             }
+          }
           }
         }
       },
