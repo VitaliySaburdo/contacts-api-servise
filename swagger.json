@@ -402,41 +402,54 @@
         "type": "array",
         "properties": {
           "type": "object",
-          "properties":{
-                      "type": "array",
-          "_id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "number": {
-            "type": "number"
-          },
-          "favorite": {
-            "type": "boolean"
-          },
-          "owner": {
-            "type": "object",
-            "items": {
+          "properties": {
+            "type": "array",
+            "_id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "number": {
+              "type": "number"
+            },
+            "favorite": {
+              "type": "boolean"
+            },
+            "owner": {
               "type": "object",
-              "properties": {
-                "_id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string",
-                  "description": "User's email",
-                  "format": "email"
+              "items": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "User's email",
+                    "format": "email"
+                  }
                 }
               }
             }
           }
+        },
+        "example": [
+          {
+            "_id": "64889571f01fee3ef6eb404f",
+            "name": "Name",
+            "number": "2344325",
+            "favorite": false,
+            "owner": {
+              "_id": "64888325b717959bdbc3ec9c",
+              "name": "Name",
+              "email": "name@mail.com"
+            }
           }
-        }
+        ]
       },
       "CreatePetRequest": {
         "type": "object",
