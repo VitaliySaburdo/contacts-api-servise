@@ -110,7 +110,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "204": {
             "description": "Logout is successfully completed'",
             "content": {
               "application/json": {
@@ -142,7 +142,7 @@
         "parameters": [
           {
             "in": "header",
-            "name": "access token",
+            "name": "token",
             "required": true,
             "description": "The user token for getting user params"
           }
@@ -391,22 +391,6 @@
             "email": "user@example.com"
           }
         }
-      },
-      "LogoutResponse": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email"
-          },
-          "userId": {
-            "type": "string",
-            "description": "User's id",
-            "example": "32143232436545474"
-          }
-        },
-        "example": 1
       },
       "CurrentResponse": {
         "type": "object",
