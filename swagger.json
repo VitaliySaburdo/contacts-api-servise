@@ -193,7 +193,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetAllPetsResponse"
+                  "$ref": "#/components/schemas/GetAllContactsResponse"
                 }
               }
             }
@@ -239,7 +239,7 @@
     "/contacts/{id}": {
       "delete": {
         "tags": ["Contacts"],
-        "summary": "Delete pet by id",
+        "summary": "Delete contact by id",
         "security": [
           {
             "Bearer": []
@@ -250,7 +250,7 @@
             "in": "path",
             "name": "id",
             "required": true,
-            "description": "Pet's id"
+            "description": "Contact's id"
           }
         ],
         "responses": {
@@ -266,7 +266,7 @@
       },
       "patch": {
         "tags": ["Contacts"],
-        "summary": "Update pet by id",
+        "summary": "Update contact by id",
         "security": [
           {
             "Bearer": []
@@ -277,16 +277,16 @@
             "in": "path",
             "name": "id",
             "required": true,
-            "description": "Pet's id"
+            "description": "Contact's id"
           }
         ],
         "responses": {
           "204": {
-            "description": "Pet updated successfully",
+            "description": "Contact updated successfully",
             "content": {}
           },
           "404": {
-            "description": "Cannot find pet with this id",
+            "description": "Cannot find contact with this id",
             "content": {}
           }
         }
@@ -363,7 +363,7 @@
         }
       },
       "LoginResponse": {
-                "type": "object",
+        "type": "object",
         "properties": {
           "message": {
             "type": "string"
@@ -408,16 +408,19 @@
       "GetAllContactsResponse": {
         "type": "object",
         "properties": {
-          "page": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "number": {
             "type": "number"
           },
-          "limit": {
-            "type": "number"
+          "favorite": {
+            "type": "boolean"
           },
-          "totalPages": {
-            "type": "number"
-          },
-          "data": {
+          "owner": {
             "type": "array",
             "items": {
               "type": "object",
@@ -428,15 +431,10 @@
                 "name": {
                   "type": "string"
                 },
-                "date": {
+                "email": {
                   "type": "string",
-                  "format": "date"
-                },
-                "breed": {
-                  "type": "string"
-                },
-                "avatarURL": {
-                  "type": "string"
+                  "description": "User's email",
+                  "format": "email"
                 }
               }
             }
@@ -445,37 +443,26 @@
       },
       "CreatePetRequest": {
         "type": "object",
-        "required": ["name", "breed", "date", "file"],
+        "required": ["name", "number"],
         "properties": {
           "name": {
             "type": "string",
             "required": true
           },
-          "date": {
+          "number": {
             "type": "string",
             "required": true,
-            "format": "date"
-          },
-          "breed": {
-            "type": "string",
-            "required": true
-          },
-          "file": {
-            "type": "file",
-            "required": true
-          },
-          "comments": {
-            "type": "string"
+            "format": "number"
           }
         }
       },
       "CreatePetResponse": {
         "type": "object",
         "properties": {
-          "status": {
+          "name": {
             "type": "string"
           },
-          "code": {
+          "number": {
             "type": "number"
           },
           "message": {
