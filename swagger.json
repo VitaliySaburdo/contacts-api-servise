@@ -465,7 +465,13 @@
           "number": {
             "type": "number"
           },
-          "message": {
+          "favorite": {
+            "type": "boolean"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "_id": {
             "type": "string"
           }
         }
