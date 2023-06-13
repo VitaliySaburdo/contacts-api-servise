@@ -112,7 +112,6 @@
         "responses": {
           "204": {
             "description": "Logout is successfully completed'"
-            }
           },
           "400": {
             "description": "Bad request",
