@@ -399,47 +399,10 @@
             "type": "string",
             "description": "User's email",
             "format": "email"
-          },
-          "avatarURL": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string",
-            "description": "User's id",
-            "example": "32143232436545474"
-          },
-          "accessToken": {
-            "type": "string",
-            "description": "User's accessToken"
-          },
-          "refreshToken": {
-            "type": "string",
-            "description": "User's refreshToken"
-          },
-          "name": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
           }
         },
         "example": {
-          "userId": "1",
-          "email": "user@example.com",
-          "accessToken": "string",
-          "refreshToken": "string",
-          "avatarURL": null,
-          "date": null,
-          "name": "string",
-          "phone": "string",
-          "city": "string"
+          "email": "user@example.com"
         }
       },
       "GetAllContactsResponse": {
