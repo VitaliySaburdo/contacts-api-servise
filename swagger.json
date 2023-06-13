@@ -135,9 +135,9 @@
         "parameters": [
           {
             "in": "header",
-            "name": "token",
+            "name": "Authorization",
             "required": true,
-            "description": "The user token for getting user params"
+            "description": "The user access token for logout"
           }
         ],
         "responses": {
