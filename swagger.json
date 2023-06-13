@@ -111,13 +111,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Logout is successfully completed'",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LogoutResponse"
-                }
-              }
+            "description": "Logout is successfully completed'"
             }
           },
           "400": {
