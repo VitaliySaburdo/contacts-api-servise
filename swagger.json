@@ -45,12 +45,13 @@
             }
           },
           "400": {
-            "description": "Failed! Bad request, invalid value",
-            "content": {}
+            "description": "Bad Request"
           },
           "409": {
-            "description": "Failed! Conflict, the email still exist!",
-            "content": {}
+            "description": "Email in use"
+          }, 
+            "500": {
+            "description": "Server Error"
           }
         }
       }
