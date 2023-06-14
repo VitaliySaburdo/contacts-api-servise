@@ -83,12 +83,10 @@
             }
           },
           "400": {
-            "description": "Failed! Bad request, invalid value",
-            "content": {}
+            "description": "Failed! Bad request, invalid value"
           },
           "401": {
-            "description": "Failed! Invalid email or password",
-            "content": {}
+            "description": "Failed! Invalid email or password"
           }
         }
       }
