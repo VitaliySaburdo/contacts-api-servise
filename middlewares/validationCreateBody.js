@@ -2,8 +2,8 @@ const { HttpError } = require("../helpers");
 
 const validateCreateBody = (schema) => {
   const func = (req, res, next) => {
-    const requiredFiels = ["name", "number"];
-    const missingFields = requiredFiels.filter((field) => !req.body[field]);
+    const requiredFields = ["name", "number"];
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
     if (missingFields.length) {
       next(
         HttpError(400, `missing required ${missingFields.join(", ")} field`)
