@@ -18,7 +18,6 @@ router.get("/current", authenticate, ctrl.getCurrent);
 
 router.post("/logout", authenticate, ctrl.logout);
 
-router.post('/refresh-token', authenticate, ctrl.refreshToken);
 
 router.patch(
   "/avatars",

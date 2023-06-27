@@ -68,41 +68,6 @@ const login = async (req, res) => {
   });
 };
 
-// Пример обновления токена при истечении
-const refreshToken = async (req, res) => {
-  const { token } = req.body;
-  const decodedToken = jwt.verify(token, SECRET_KEY);
-  const { id } = decodedToken;
-
-  // Проверяем, истек ли токен или скоро истечет
-  const user = await User.findById(id);
-  if (!user) {
-    throw HttpError(401, "User not found");
-  }
-
-  const currentTimestamp = Math.floor(Date.now() / 1000);
-  if (decodedToken.exp - currentTimestamp > 60) {
-    // Токен еще не истек или не скоро истечет, возвращаем текущий токен
-    return res.status(200).json({
-      token: token,
-    });
-  }
-
-  // Генерируем новый токен
-  const payload = {
-    id: user._id,
-  };
-  const newToken = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
-
-  // Обновляем токен в базе данных
-  await User.findByIdAndUpdate(user._id, { token: newToken });
-
-  // Возвращаем новый токен
-  res.status(200).json({
-    token: newToken,
-  });
-};
-
 const getCurrent = async (req, res) => {
   const { email, name } = req.user;
   res.json({
@@ -137,7 +102,6 @@ const updateAvatar = async (req, res) => {
 module.exports = {
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
-  refreshToken: ctrlWrapper(refreshToken),
   getCurrent: ctrlWrapper(getCurrent),
   logout: ctrlWrapper(logout),
   updateAvatar: ctrlWrapper(updateAvatar),
