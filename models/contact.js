@@ -42,8 +42,6 @@ const changeSchema = Joi.object({
   number: Joi.string(),
 });
 
-
-
 const schemas = {
   addSchema: addSchema,
   changeSchema: changeSchema,
