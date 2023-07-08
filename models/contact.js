@@ -42,14 +42,12 @@ const changeSchema = Joi.object({
   number: Joi.string(),
 });
 
-const upDateFavoriteSchema = Joi.object({
-  favorite: Joi.boolean().required(),
-});
+
 
 const schemas = {
   addSchema: addSchema,
   changeSchema: changeSchema,
-  upDateFavoriteSchema,
+
 };
 
 module.exports = { Contact, schemas };

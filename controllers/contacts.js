@@ -55,14 +55,7 @@ const changeContactById = async (req, res) => {
   res.status(200).json(result);
 };
 
-const upDateFavorite = async (req, res) => {
-  const { id } = req.params;
-  const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
-  if (!result) {
-    throw HttpError(404, `Product with id ${id} not found`);
-  }
-  res.status(200).json(result);
-};
+
 
 module.exports = {
   getAllContacts: ctrlWrapper(getAllContacts),
@@ -70,5 +63,5 @@ module.exports = {
   createContact: ctrlWrapper(createContact),
   deleteContact: ctrlWrapper(deleteContact),
   changeContactById: ctrlWrapper(changeContactById),
-  upDateFavorite: ctrlWrapper(upDateFavorite),
+
 };

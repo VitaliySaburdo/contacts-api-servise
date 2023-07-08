@@ -7,7 +7,6 @@ const ctrl = require("../../controllers/contacts");
 const {
   validateCreateBody,
   isValidId,
-  validatePatchBody,
   authenticate,
 } = require("../../middlewares");
 
@@ -27,13 +26,6 @@ router.post(
 router.delete("/:id", authenticate, isValidId, ctrl.deleteContact);
 
 router.put("/:id", authenticate, isValidId, ctrl.changeContactById);
-
-router.patch(
-  "/:id/favorite",
-  isValidId,
-  validatePatchBody(schemas.upDateFavoriteSchema),
-  ctrl.upDateFavorite
-);
 
 module.exports = router;
 
